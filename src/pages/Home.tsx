@@ -1,13 +1,6 @@
-import { ArrowBackIcon, BellIcon, LockIcon, SunIcon } from "@chakra-ui/icons";
-import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  Grid,
-  IconButton,
-  Text,
-} from "@chakra-ui/react";
+import { BellIcon, LockIcon, SunIcon } from "@chakra-ui/icons";
+import { Avatar, Box, Button, Flex, Grid, Text } from "@chakra-ui/react";
+import { BackButton } from "../components/BackButton/BackButton";
 import { Category } from "../components/Category/Category";
 
 export const Component = () => {
@@ -21,15 +14,7 @@ export const Component = () => {
         gap={6}
       >
         <Flex as="header" align="center" color="white">
-          <IconButton
-            aria-label="Back"
-            icon={<ArrowBackIcon w="1.5rem" h="1.5rem" mr="auto" />}
-            variant="unstyled"
-            color="white"
-            colorScheme="orange"
-            display="flex"
-            px={0}
-          />
+          <BackButton />
           <Text
             as="h1"
             flex="1"
@@ -58,7 +43,7 @@ export const Component = () => {
         </Box>
       </Flex>
 
-      <Box p={3}>
+      <Box p={4}>
         <Flex mb={4}>
           <Text as="h2" fontWeight={500}>
             Explore
