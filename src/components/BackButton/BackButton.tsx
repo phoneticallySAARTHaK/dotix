@@ -1,7 +1,9 @@
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { IconButton, IconButtonProps } from "@chakra-ui/react";
+import { As, IconButton, IconButtonProps, PropsOf } from "@chakra-ui/react";
 
-export function BackButton(props: Partial<IconButtonProps>) {
+export function BackButton<T extends As>(
+  props: Partial<IconButtonProps & PropsOf<T>>
+) {
   return (
     <IconButton
       aria-label="Back"

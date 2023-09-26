@@ -1,12 +1,23 @@
 import { Box, BoxProps, Button, Text } from "@chakra-ui/react";
 import { FC, ReactNode } from "react";
-export type CategoryProps = {
-  name: string;
-  c_id: string;
-  icon: ReactNode;
-} & BoxProps;
+export type CategoryProps = (
+  | {
+      icon: ReactNode;
+      inline?: false;
+    }
+  | {
+      inline: true;
+      icon?: undefined;
+    }
+) & { name: string; c_id: number } & BoxProps;
 
-export const Category: FC<CategoryProps> = ({ name, c_id, icon, ...props }) => {
+export const Category: FC<CategoryProps> = ({
+  name,
+  c_id,
+  icon,
+  inline,
+  ...props
+}) => {
   return (
     <Box
       as={Button}
@@ -23,7 +34,7 @@ export const Category: FC<CategoryProps> = ({ name, c_id, icon, ...props }) => {
       <Text as="h4" textAlign="center" fontWeight={500} fontSize={"0.9rem"}>
         {name}
       </Text>
-      {icon}
+      {!inline && icon}
     </Box>
   );
 };

@@ -1,4 +1,5 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import * as Categories from "./pages/Categories";
 import * as Home from "./pages/Home";
 import * as Result from "./pages/Result";
 
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
       { path: "/quiz" },
       { path: "/result", Component: Result.Component },
       { path: "/leaderboard" },
+      { path: "/categories", ...Categories },
     ],
   },
 ]);

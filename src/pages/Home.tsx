@@ -1,5 +1,6 @@
 import { BellIcon, LockIcon, SunIcon } from "@chakra-ui/icons";
 import { Avatar, Box, Button, Flex, Grid, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { BackButton } from "../components/BackButton/BackButton";
 import { Category } from "../components/Category/Category";
 
@@ -33,9 +34,9 @@ export const Component = () => {
           </Text>
           <Grid gridTemplateColumns="repeat(3, 1fr)" gap={2}>
             {[
-              { c_id: "1", name: "Space", icon: <LockIcon /> },
-              { c_id: "2", name: "History", icon: <BellIcon /> },
-              { c_id: "4", name: "Sports", icon: <SunIcon /> },
+              { c_id: 1, name: "Space", icon: <LockIcon /> },
+              { c_id: 2, name: "History", icon: <BellIcon /> },
+              { c_id: 4, name: "Sports", icon: <SunIcon /> },
             ].map((cat) => (
               <Category key={cat.c_id} {...cat} />
             ))}
@@ -48,7 +49,14 @@ export const Component = () => {
           <Text as="h2" fontWeight={500}>
             Explore
           </Text>
-          <Button ml="auto" variant="link" fontSize="0.75rem" color="black">
+          <Button
+            ml="auto"
+            variant="link"
+            fontSize="0.75rem"
+            color="black"
+            as={Link}
+            to="/categories"
+          >
             View All
           </Button>
         </Flex>
