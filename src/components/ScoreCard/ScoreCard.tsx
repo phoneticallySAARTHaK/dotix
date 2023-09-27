@@ -19,6 +19,7 @@ const Detail = ({
         fontWeight={700}
         verticalAlign={"top"}
         alignSelf={"start"}
+        lineHeight={0.75}
       >
         •
       </Text>
