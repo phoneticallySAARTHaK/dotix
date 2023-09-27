@@ -55,8 +55,8 @@ export const ScoreCard: FC<
         value={correct + incorrect}
         color="rgba(255, 193, 2, 1)"
       />
-      <Detail label="Comp" value={correct} color="green" />
-      <Detail label="Comp" value={incorrect} color="red" />
+      <Detail label="Correct" value={correct} color="green" />
+      <Detail label="Incorrect" value={incorrect} color="red" />
     </Grid>
   );
 };
