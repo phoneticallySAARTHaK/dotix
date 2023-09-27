@@ -10,9 +10,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {
-    c_id: "",
+    c_id: 1,
     name: "Sports",
     icon: <AddIcon />,
   },
