@@ -1,9 +1,12 @@
 import { Avatar, Box, Flex, Grid } from "@chakra-ui/react";
+import { ActionFunctionArgs, useActionData } from "react-router-dom";
 import { BackButton } from "../components/BackButton/BackButton";
 import { ScoreBubble } from "../components/ScoreBubble/ScoreBubble";
 import { ScoreCard } from "../components/ScoreCard/ScoreCard";
 
 export const Component = () => {
+  const actionData = useActionData();
+  console.log(actionData);
   return (
     <Grid
       gridTemplateColumns="repeat(12, 1fr)"
@@ -50,3 +53,8 @@ export const Component = () => {
     </Grid>
   );
 };
+
+export async function action({ request }: ActionFunctionArgs) {
+  const data = await request.json();
+  return data;
+}

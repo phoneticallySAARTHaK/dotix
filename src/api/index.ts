@@ -9,7 +9,7 @@ export namespace api {
 
   export async function fetch<T>(resource: string | URL, init?: RequestInit) {
     const url = new URL(resource);
-    url.searchParams.set("token", getToken());
+    // url.searchParams.set("token", getToken());
 
     return window.fetch(url, init).then((r) => r.json()) as Promise<T>;
   }

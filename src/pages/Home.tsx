@@ -1,10 +1,16 @@
-import { BellIcon, LockIcon, SunIcon } from "@chakra-ui/icons";
 import { Avatar, Box, Button, Flex, Grid, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { api } from "../api";
 import { BackButton } from "../components/BackButton/BackButton";
 import { Category } from "../components/Category/Category";
 
+export function loader() {
+  console.log("home laoder");
+  return api.fetchCategories();
+}
+
 export const Component = () => {
+  const loaderData = useLoaderData() as api.Categories;
   return (
     <Grid>
       <Flex
@@ -33,13 +39,11 @@ export const Component = () => {
             Popular
           </Text>
           <Grid gridTemplateColumns="repeat(3, 1fr)" gap={2}>
-            {[
-              { c_id: 1, name: "Space", icon: <LockIcon /> },
-              { c_id: 2, name: "History", icon: <BellIcon /> },
-              { c_id: 4, name: "Sports", icon: <SunIcon /> },
-            ].map((cat) => (
-              <Category key={cat.c_id} {...cat} />
-            ))}
+            {loaderData
+              .filter(({ name }) => /(history|sports|Mythology)/i.test(name))
+              .map((cat) => (
+                <Category key={cat.id} c_id={cat.id} name={cat.name} inline />
+              ))}
           </Grid>
         </Box>
       </Flex>
@@ -55,28 +59,22 @@ export const Component = () => {
             fontSize="0.75rem"
             color="black"
             as={Link}
-            to="/categories"
+            to="categories"
           >
             View All
           </Button>
         </Flex>
 
         <Grid gridTemplateColumns="repeat(3, 1fr)" gap={2}>
-          {[
-            { c_id: "1", name: "Space", icon: <LockIcon /> },
-            { c_id: "2", name: "History", icon: <BellIcon /> },
-            { c_id: "4", name: "Sports", icon: <SunIcon /> },
-            { c_id: "1", name: "Space", icon: <LockIcon /> },
-            { c_id: "2", name: "History", icon: <BellIcon /> },
-            { c_id: "4", name: "Sports", icon: <SunIcon /> },
-            { c_id: "1", name: "Space", icon: <LockIcon /> },
-            { c_id: "2", name: "History", icon: <BellIcon /> },
-            { c_id: "4", name: "Sports", icon: <SunIcon /> },
-          ].map((cat) => (
-            <Category key={cat.c_id} {...cat} />
-          ))}
+          {loaderData
+            .filter(({ name }) => name.length < 12)
+            .slice(0, 10)
+            .map((cat) => (
+              <Category key={cat.id} c_id={cat.id} name={cat.name} inline />
+            ))}
         </Grid>
       </Box>
+      <Outlet />
     </Grid>
   );
 };

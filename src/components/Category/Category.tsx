@@ -1,5 +1,6 @@
-import { Box, BoxProps, Button, Text } from "@chakra-ui/react";
+import { Button, ButtonProps, Text } from "@chakra-ui/react";
 import { FC, ReactNode } from "react";
+import { Link } from "react-router-dom";
 export type CategoryProps = (
   | {
       icon: ReactNode;
@@ -9,7 +10,7 @@ export type CategoryProps = (
       inline: true;
       icon?: undefined;
     }
-) & { name: string; c_id: number } & BoxProps;
+) & { name: string; c_id: number } & ButtonProps;
 
 export const Category: FC<CategoryProps> = ({
   name,
@@ -19,8 +20,9 @@ export const Category: FC<CategoryProps> = ({
   ...props
 }) => {
   return (
-    <Box
-      as={Button}
+    <Button
+      as={Link}
+      to={`/home/options?category=${c_id}`}
       h="fit-content"
       display="grid"
       placeItems="center"
@@ -35,6 +37,6 @@ export const Category: FC<CategoryProps> = ({
         {name}
       </Text>
       {!inline && icon}
-    </Box>
+    </Button>
   );
 };
