@@ -7,7 +7,7 @@ const Detail = ({
   color,
 }: {
   label: string;
-  value: string;
+  value: string | number;
   color?: string;
 }) => {
   return (
@@ -34,7 +34,9 @@ const Detail = ({
   );
 };
 
-export const ScoreCard: FC<BoxProps> = (props) => {
+export const ScoreCard: FC<
+  BoxProps & { correct: number; incorrect: number }
+> = ({ correct, incorrect, ...props }) => {
   return (
     <Grid
       columnGap={2}
@@ -46,10 +48,14 @@ export const ScoreCard: FC<BoxProps> = (props) => {
       bg="white"
       {...props}
     >
-      <Detail label="Comp" value="100%" />
-      <Detail label="Comp" value="100%" />
-      <Detail label="Comp" value="100%" />
-      <Detail label="Comp" value="100%" />
+      <Detail label="Completed" value="100%" color="rgba(255, 193, 2, 1)" />
+      <Detail
+        label="Questions"
+        value={correct + incorrect}
+        color="rgba(255, 193, 2, 1)"
+      />
+      <Detail label="Comp" value={correct} color="green" />
+      <Detail label="Comp" value={incorrect} color="red" />
     </Grid>
   );
 };

@@ -39,9 +39,7 @@ export const Component = () => {
   }>({ time: 5, selected: undefined, show: false });
 
   useEffect(() => {
-    console.log("[answers]");
     const id = setInterval(() => {
-      console.log("timer");
       setQuestionState((state) => {
         if (Boolean(state.selected)) {
           clearTimeout(id);
@@ -62,14 +60,12 @@ export const Component = () => {
 
     setQuestionState({ time: 5, selected: undefined, show: false });
     return () => {
-      console.log("unmount");
       clearTimeout(id);
     };
   }, [answers]);
 
   useEffect(() => {
     if (questionState.show) {
-      console.log(questionState);
       const isCorrect =
         questionState.selected === actionData[current].correct_answer;
 
@@ -86,11 +82,10 @@ export const Component = () => {
   }, [questionState]);
 
   const current = answers.correct + answers.incorrect;
-  const question = actionData[current];
+  const question =
+    actionData[current >= actionData.length ? actionData.length - 1 : current];
 
-  const options = (
-    question ? [question.correct_answer, ...question.incorrect_answers] : []
-  )
+  const options = [question.correct_answer, ...question.incorrect_answers]
     .sort()
     .map((op) => ({
       label: op ?? "",
@@ -176,7 +171,7 @@ export const Component = () => {
         >
           Question {`${current + 1}`.padStart(2, "0")}/{actionData.length}
         </Text>
-        <Text>{unescapeHtml(actionData[current].question)}</Text>
+        <Text>{unescapeHtml(question.question)}</Text>
       </Grid>
 
       <Options

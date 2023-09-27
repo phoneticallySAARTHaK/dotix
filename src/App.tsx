@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         ],
       },
       { path: "/quiz", ...Quiz },
-      { path: "/result", Component: Result.Component },
+      { path: "/result", ...Result },
       { path: "/leaderboard" },
     ],
   },

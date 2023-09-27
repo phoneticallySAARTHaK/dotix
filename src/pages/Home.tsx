@@ -5,7 +5,6 @@ import { BackButton } from "../components/BackButton/BackButton";
 import { Category } from "../components/Category/Category";
 
 export function loader() {
-  console.log("home laoder");
   return api.fetchCategories();
 }
 

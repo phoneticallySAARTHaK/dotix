@@ -5,7 +5,7 @@ import { ScoreBubble } from "../components/ScoreBubble/ScoreBubble";
 import { ScoreCard } from "../components/ScoreCard/ScoreCard";
 
 export const Component = () => {
-  const actionData = useActionData();
+  const actionData = useActionData() as any;
   console.log(actionData);
   return (
     <Grid
@@ -26,10 +26,15 @@ export const Component = () => {
           <BackButton />
         </Box>
 
-        <ScoreBubble score={0} m="auto" mt="0" />
+        <ScoreBubble score={actionData.correct * 10} m="auto" mt="0" />
       </Flex>
 
-      <ScoreCard gridColumn="2 / -2" gridRow={"35 / span 25"} />
+      <ScoreCard
+        gridColumn="2 / -2"
+        gridRow={"35 / span 25"}
+        correct={actionData.correct}
+        incorrect={actionData.incorrect}
+      />
       <Grid
         gridTemplateColumns="repeat(3, 1fr)"
         my="auto"
